@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Tarea con palabras · ESIC University</title>
+<link rel="icon" href="img/logo-esic-azul.png">
+<link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+
+<header class="cabecera">
+  <img src="img/logo-esic-blanco.png" alt="ESIC University">
+  <div class="sep"></div>
+  <div class="asig"><span id="asig"></span><small id="tema"></small></div>
+</header>
+<div class="franja"></div>
+
+<!-- Pestañas: se ocultan en cuanto el participante acepta el consentimiento -->
+<nav class="pestanas" id="pestanas" role="tablist">
+  <button role="tab" id="tab-exp" class="activa" aria-selected="true" data-destino="vista-exp">Experimento</button>
+  <button role="tab" id="tab-res" aria-selected="false" data-destino="vista-res">Resultados</button>
+</nav>
+
+<!-- =================================================================
+     PESTAÑA 1 · EXPERIMENTO (lo que hacen los estudiantes)
+     ================================================================= -->
+<main id="vista-exp">
+
+  <!-- 1. CONSENTIMIENTO (descripción genérica: no revela la prueba de memoria) -->
+  <section id="p-consentimiento" class="tarjeta">
+    <h1>Actividad: tareas breves con palabras</h1>
+    <p>Te invitamos a participar en una breve actividad de la asignatura. Su objetivo es estudiar
+      <strong>cómo procesamos las palabras</strong> al realizar distintas tareas sencillas.</p>
+    <h2>¿En qué consiste?</h2>
+    <ul>
+      <li>Responderás a unas preguntas de sí o no sobre palabras, harás una pequeña tarea con números y otras tareas breves.</li>
+      <li>Dura unos <strong>8 minutos</strong>.</li>
+      <li>Puedes hacerla desde el ordenador o desde el móvil.</li>
+    </ul>
+    <h2>Tus derechos</h2>
+    <ul>
+      <li>La participación es <strong>voluntaria</strong>: no participar no tiene ninguna consecuencia en la evaluación de la asignatura.</li>
+      <li>Puedes <strong>abandonar en cualquier momento</strong> cerrando la ventana, sin dar explicaciones.</li>
+      <li>Las respuestas son <strong>anónimas</strong>: no se recoge tu nombre, correo ni ningún dato identificativo.</li>
+      <li>Los datos se usarán solo con fines docentes, de forma agregada, y se comentarán en clase.</li>
+      <li>Al terminar, el profesor explicará en clase el objetivo completo de la actividad.</li>
+    </ul>
+
+    <label class="check"><input type="checkbox" id="chk-edad">
+      <span>Declaro que soy mayor de edad y que he leído y comprendido esta información.</span></label>
+
+    <div class="botones">
+      <button id="btn-acepto" disabled>Sí, acepto participar</button>
+      <button id="btn-rechazo" class="secundario">No deseo participar</button>
+    </div>
+  </section>
+
+  <section id="p-rechazo" class="tarjeta oculto">
+    <h1>Gracias por tu tiempo</h1>
+    <p>Has decidido no participar. No se ha guardado ningún dato. Ya puedes cerrar esta ventana.</p>
+  </section>
+
+  <!-- 2. INSTRUCCIONES TAREA 1 -->
+  <section id="p-instr1" class="tarjeta oculto">
+    <div class="paso">Tarea 1 de 3</div>
+    <h1>Preguntas sobre palabras</h1>
+    <p>Verás <strong>18 preguntas</strong>, una cada vez. Cada pregunta se refiere a una palabra.
+      Responde <strong>Sí</strong> o <strong>No</strong> lo más rápido que puedas, pero sin equivocarte.</p>
+    <ul>
+      <li>Fíjate bien en lo que te pregunta cada vez: unas veces sobre cómo está escrita la palabra, otras sobre cómo suena y otras sobre lo que significa.</li>
+      <li>No se puede volver atrás.</li>
+      <li>Busca un entorno tranquilo y no cambies de pestaña durante la actividad.</li>
+    </ul>
+    <p class="nota">En el ordenador también puedes responder con el teclado: <kbd>S</kbd> = Sí · <kbd>N</kbd> = No.</p>
+    <div class="botones"><button id="btn-empezar1">Empezar</button></div>
+  </section>
+
+  <!-- 3. TAREA 1: CODIFICACIÓN -->
+  <section id="p-tarea1" class="tarjeta oculto">
+    <div class="paso" id="t1-contador">Pregunta 1 de 18</div>
+    <div class="barra"><div id="t1-barra"></div></div>
+    <div class="estimulo" id="t1-pregunta" aria-live="polite"></div>
+    <div class="botones centrados" id="t1-botones">
+      <button class="grande" data-r="Sí">Sí</button>
+      <button class="grande" data-r="No">No</button>
+    </div>
+  </section>
+
+  <!-- 4. TAREA 2: DISTRACTORA -->
+  <section id="p-instr2" class="tarjeta oculto">
+    <div class="paso">Tarea 2 de 3</div>
+    <h1>Contar hacia atrás</h1>
+    <p>Cuenta hacia atrás <strong>desde 47 hasta 1, de dos en dos</strong> (47, 45, 43…).
+      Escribe cada número en la casilla y pulsa <kbd>Intro</kbd> o el botón para pasar al siguiente.</p>
+    <div class="botones"><button id="btn-empezar2">Empezar</button></div>
+  </section>
+
+  <section id="p-tarea2" class="tarjeta oculto">
+    <div class="paso">Tarea 2 de 3 · Contar hacia atrás de dos en dos</div>
+    <div class="cuenta-actual">Último número: <strong id="t2-ultimo">47</strong></div>
+    <form id="t2-form" class="fila-cuenta" autocomplete="off">
+      <input type="text" id="t2-input" inputmode="numeric" pattern="[0-9]*" maxlength="2" aria-label="Siguiente número">
+      <button type="submit">Siguiente</button>
+    </form>
+    <p class="aviso-inline" id="t2-aviso"></p>
+    <div class="barra"><div id="t2-barra"></div></div>
+  </section>
+
+  <!-- 5. TAREA 3: RECONOCIMIENTO -->
+  <section id="p-tarea3" class="tarjeta oculto">
+    <div class="paso">Tarea 3 de 3</div>
+    <h1>¿Qué palabras reconoces?</h1>
+    <p>En esta lista hay <strong>36 palabras</strong>. Algunas aparecieron en las preguntas de la <strong>tarea 1</strong> y otras no.
+      <strong>Marca todas las que reconozcas</strong> (toca una palabra para marcarla o desmarcarla).</p>
+    <div class="rejilla-palabras" id="t3-rejilla"></div>
+    <p class="nota" id="t3-cuenta">Palabras marcadas: 0</p>
+    <div class="botones"><button id="btn-fin3">He terminado</button></div>
+  </section>
+
+  <!-- 6. PREGUNTAS FINALES -->
+  <section id="p-finales" class="tarjeta oculto">
+    <h2>Para terminar</h2>
+    <form id="form-finales" novalidate></form>
+    <div class="botones"><button id="btn-enviar">Enviar respuestas</button></div>
+  </section>
+
+  <!-- 7. FIN -->
+  <section id="p-fin" class="tarjeta oculto">
+    <h1>¡Muchas gracias por participar!</h1>
+    <p id="estado-envio" class="nota">Enviando respuestas…</p>
+    <h2>Tu resultado</h2>
+    <p>Proporción de palabras que has reconocido en cada grupo de preguntas (aciertos / 6):</p>
+    <div class="mis-resultados" id="mis-resultados"></div>
+    <p>Por favor, <strong>no comentes con tus compañeros</strong> las palabras ni las tareas hasta que el profesor lo indique:
+      podría afectar a sus respuestas.</p>
+    <p class="nota">Código anónimo de participación: <strong id="codigo"></strong></p>
+  </section>
+
+  <section id="p-repetido" class="tarjeta oculto">
+    <h1>Actividad ya realizada</h1>
+    <p>Desde este navegador ya se ha completado (o iniciado) la actividad. Para que los resultados sean válidos,
+      cada persona debe participar una sola vez. Gracias.</p>
+  </section>
+</main>
+
+<!-- =================================================================
+     PESTAÑA 2 · RESULTADOS (lo que proyecta el profesor)
+     ================================================================= -->
+<main id="vista-res" class="ancho oculto">
+  <h1>Resultados: ¿influye el nivel de procesamiento en el recuerdo?</h1>
+  <p class="nota">Diseño con el mismo grupo de participantes (intrasujeto). VI: nivel de procesamiento
+    (superficial · intermedio · profundo). VD: proporción de palabras reconocidas en cada nivel (aciertos / 6).</p>
+
+  <div class="controles">
+    <label>Cohorte<input type="text" id="cohorte"></label>
+    <label>Clave de resultados<input type="password" id="clave" autocomplete="off"></label>
+    <button id="btn-cargar">Cargar datos</button>
+    <button id="btn-demo" class="secundario">Datos simulados</button>
+    <button id="btn-local" class="secundario">Datos de este navegador</button>
+    <button id="btn-csv" class="secundario">CSV para JASP</button>
+    <label class="en-linea"><input type="checkbox" id="auto"> Actualizar cada 15 s</label>
+    <span class="estado" id="estado">Sin datos cargados.</span>
+  </div>
+  <div class="filtros">
+    <strong>Excluir:</strong>
+    <label><input type="checkbox" id="f-sospecha" checked> quienes sospechaban la prueba de memoria</label>
+    <label><input type="checkbox" id="f-conocia" checked> quienes ya conocían el experimento</label>
+    <label><input type="checkbox" id="f-condiciones" checked> quienes tuvieron interrupciones</label>
+    <label><input type="checkbox" id="f-pestana"> quienes cambiaron de pestaña</label>
+  </div>
+
+  <div class="tiles">
+    <div class="tile"><div class="v" id="t-n">–</div><div class="e">participantes analizados</div></div>
+    <div class="tile"><div class="v" id="t-sup" style="color:#8C97AE">–</div><div class="e">superficial (media)</div></div>
+    <div class="tile"><div class="v" id="t-int" style="color:#0047E8">–</div><div class="e">intermedio (media)</div></div>
+    <div class="tile"><div class="v" id="t-prof" style="color:#FF9606">–</div><div class="e">profundo (media)</div></div>
+  </div>
+
+  <!-- 1. Descriptivos -->
+  <section class="panel">
+    <div class="titulo-panel"><span class="num-panel">1</span><h2>Estadísticos descriptivos</h2></div>
+    <div class="sub">Proporción de palabras reconocidas en cada nivel. <label class="en-linea"><input type="checkbox" id="por-sexo"> Separar por sexo</label></div>
+    <div class="scroll-x"><table class="tabla" id="tab-desc"></table></div>
+  </section>
+
+  <div class="rejilla">
+    <section class="panel">
+      <div class="titulo-panel"><span class="num-panel">2</span><h2>Gráfico descriptivo</h2></div>
+      <div class="sub">Media de cada nivel con su intervalo de confianza al 95 %</div>
+      <div id="g-desc"></div>
+    </section>
+    <section class="panel">
+      <div class="titulo-panel"><span class="num-panel">3</span><h2>Cada línea es una persona</h2></div>
+      <div class="sub">Puntuaciones individuales unidas entre niveles, diagrama de caja y distribución (<i>raincloud</i>)</div>
+      <div id="g-rain"></div>
+    </section>
+  </div>
+
+  <section class="panel">
+    <div class="titulo-panel"><span class="num-panel">4</span><h2>Distribución por nivel</h2></div>
+    <div class="sub" id="sub-violin">Violín + caja + puntos de cada participante</div>
+    <div class="leyenda" id="ley-violin"></div>
+    <div id="g-violin"></div>
+  </section>
+
+  <!-- ANOVA -->
+  <section class="panel">
+    <div class="titulo-panel"><span class="num-panel">5</span><h2>ANOVA de medidas repetidas</h2></div>
+    <div class="sub">Paso 1 · Supuesto de esfericidad (prueba de Mauchly)</div>
+    <div class="scroll-x"><table class="tabla" id="tab-mauchly"></table></div>
+    <div class="sub" style="margin-top:16px">Paso 2 · Efectos intrasujeto
+      <label class="en-linea" style="margin-left:12px">Corrección:
+        <select id="correccion">
+          <option value="gg" selected>Greenhouse-Geisser</option>
+          <option value="hf">Huynh-Feldt</option>
+          <option value="none">Ninguna (esfericidad asumida)</option>
+          <option value="all">Mostrar todas</option>
+        </select></label></div>
+    <div class="scroll-x"><table class="tabla" id="tab-anova"></table></div>
+    <div class="sub" style="margin-top:16px">Efectos entre sujetos (diferencias individuales que el diseño separa del error)</div>
+    <div class="scroll-x"><table class="tabla" id="tab-entre"></table></div>
+    <div class="sub" style="margin-top:16px">Paso 3 · Comparaciones post hoc (corrección de Bonferroni y de Holm)</div>
+    <div class="scroll-x"><table class="tabla" id="tab-posthoc"></table></div>
+    <div class="interpreta" id="interp"></div>
+  </section>
+
+  <!-- No paramétrica -->
+  <section class="panel">
+    <div class="titulo-panel"><span class="num-panel">6</span><h2>Alternativa no paramétrica: prueba de Friedman</h2></div>
+    <div class="scroll-x"><table class="tabla" id="tab-friedman"></table></div>
+    <div class="sub" style="margin-top:16px">Comparaciones post hoc de Conover</div>
+    <div class="scroll-x"><table class="tabla" id="tab-conover"></table></div>
+  </section>
+
+  <!-- APA -->
+  <section class="panel">
+    <div class="titulo-panel"><span class="num-panel">7</span><h2>Así se informaría en un artículo (APA 7)</h2></div>
+    <div class="apa" id="apa"></div>
+  </section>
+
+  <div class="rejilla">
+    <section class="panel">
+      <div class="titulo-panel"><span class="num-panel">8</span><h2>Falsas alarmas</h2></div>
+      <div class="sub">Palabras nuevas (no vistas) que se marcaron como reconocidas, de 18 posibles</div>
+      <div id="g-fa"></div>
+      <div class="interpreta" id="interp-fa"></div>
+    </section>
+    <section class="panel">
+      <div class="titulo-panel"><span class="num-panel">9</span><h2>Reconocimiento por palabra</h2></div>
+      <div class="sub">% de participantes que reconocieron cada palabra estudiada</div>
+      <div class="scroll-x"><table class="tabla" id="tab-items"></table></div>
+    </section>
+  </div>
+
+  <section class="panel">
+    <h2>Datos individuales</h2>
+    <details><summary>Ver tabla de datos</summary><div class="scroll" id="crudos"></div></details>
+  </section>
+</main>
+
+<div id="tip"></div>
+<p class="pie">ESIC University · <span id="pie-asig"></span> · Actividad docente</p>
+
+<script src="js/config.js"></script>
+<script src="js/estadistica.js"></script>
+<script src="js/experimento.js"></script>
+<script src="js/resultados.js"></script>
+</body>
+</html>
