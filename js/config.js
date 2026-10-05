@@ -19,7 +19,7 @@ window.CONFIG = {
      Si se deja vacía, el experimento funciona en «modo local»:
      guarda las respuestas solo en este navegador (útil para probar).
      ------------------------------------------------------------------ */
-  ENDPOINT: "",
+  ENDPOINT: "https://script.google.com/macros/s/AKfycbxphLwip5uEIkSBz9X4-lELWu8Ow6ZuG0tTV8rSV14pA5JTf_jMudSPjq6_yRsGVWNf/exec",
 
   /* Etiqueta del grupo de clase: cámbiala en cada grupo o curso
      (p. ej. "MDTI-2026-G1") para separar las respuestas en la hoja. */
